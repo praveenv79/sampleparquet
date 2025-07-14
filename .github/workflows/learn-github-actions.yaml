@@ -1,8 +1,33 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [workflow_dispatch]
+on: 
+  workflow_dispatch:
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: "Person to greet"
+        # Default value if no value is explicitly provided
+        default: "World"
+        # Input has to be provided for the workflow to run
+        required: true
+        # Input Type (string, choice, boolean)
+        type: string
+      city:
+        description: "Favorite city"
+        required: true
+        default: "Tupelo"
+        type: choice
+        options:
+          - New York
+          - Seattle
+          - Tupelo
+      fav-color-blue:
+        description: "Is your favorite color blue"
+        required: true
+        type: boolean
+
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "running action"
+      - run: echo "running action with input ${{ github.event.inputs.name }}"
