@@ -30,6 +30,6 @@ jobs:
   check-bats-version:
     runs-on: ubuntu-latest
     env:
-      GithubCtx: ${{ toJSON(github}}
+      GithubCtx: ${{ toJSON(github)}}
     steps:
       - run: echo "running action with input $GithubCtx"
